@@ -1,0 +1,48 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <h3 class="m-4">All Students</h3>
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Student ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Surname</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Field of study</th>
+                  <th scope="col">GPA</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for student in students %}
+                <tr>
+                  <td>{{ student.student_nr }} </td>
+                  <td>{{ student.first_name }} </td>
+                  <td>{{ student.second_name }} </td>
+                  <td>{{ student.email }} </td>
+                  <td>{{ student.field_of_study }} </td>
+                  <td>{% if student.gpa %}{{ student.gpa|floatformat:1 }}{% else %}-{% endif %} </td>
+                  <td><a href="{% url 'info_view' student.id %}"><button type="button" class = "btn btn-info">Info</button></a>
+                      <a href="{% url 'update_view' student.id %}"><button type="button" class="btn btn-warning">Update</button></a>
+                      <a href="{% url 'delete_view' student.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+                  </td>
+                </tr>
+              {% empty %}
+              <tr>
+                <td colspan="7">
+                  <div class="alert alert-secondary">No students have registered yet</div>
+                </td>
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

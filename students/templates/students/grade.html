@@ -1,0 +1,12 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Add Grade for {{ student.first_name }} {{ student.second_name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

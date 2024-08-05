@@ -1,0 +1,74 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <title>Student Management</title>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/list_view.css' %}" rel="stylesheet" type="text/css"/>
+</head>
+<body class = 'd-flex flex-column min-vh-100'>
+  <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <i class="fa-solid fa-graduation-cap"></i> PythonAL21
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'view_home' %}">Home
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false"><i class="fa-solid fa-list"></i> Course program </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'view_pythonbasic' %}">Python the basic</a>
+              <a class="dropdown-item" href="{% url 'view_pythonintermediate' %}">Python intermediate</a>
+              <a class="dropdown-item" href="{% url 'view_sql' %}">SQL databases</a>
+              <a class="dropdown-item" href="{% url 'view_frontend' %}">HTML, CSS & Javascript</a>
+              <a class="dropdown-item" href="{% url 'view_backend' %}">Backend Technologies</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'view_schedule' %}"><i class="fa-regular fa-calendar-days"></i> Schedule </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> <i class="fa-solid fa-clipboard-user"></i> Attendance </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'create_view' %}">
+              <i class="fa-solid fa-circle-plus"></i> Add a student
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_grades' %}">Add grades</a>
+          </li>
+        </ul>
+        <form class="d-flex align-items-center" action="{% url 'log_out' %}" method="post">
+          {% csrf_token %}
+          <p class="text-sm-start mb-0 me-3">Hello, {{ user.first_name }}</p>
+          <button class="btn btn-danger" type="submit">Log out</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+{% block content %}{% endblock %}
+  <footer class = 'mt-auto mb-4'>
+    <div class="text-center">
+      <span>
+          Copyright &copy; 2024 Andi&Denis Project
+      </span>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

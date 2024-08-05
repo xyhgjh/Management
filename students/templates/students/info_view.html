@@ -1,0 +1,82 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+
+<div class="" id="sides">
+
+    <div class="container right-side">
+        <h2>Student Info</h2>
+        <table>
+            <tr>
+                <th>Student ID</th>
+                <td>{{ student.student_nr }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ student.first_name }}</td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td>{{ student.second_name }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ student.age }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ student.email }}</td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <td>{{ student.number }}</td>
+            </tr>
+            <tr>
+                <th>Nationality</th>
+                <td>{{ student.nationality }}</td>
+            </tr>
+            <tr>
+                <th>Field of study</th>
+                <td>{{ student.field_of_study }}</td>
+            </tr>
+            <tr>
+                <th>Biography</th>
+                <td>{{ student.bio }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="container left-side">
+        <div class="">
+            <h2>Student Image</h2>
+            {% if student.upload %}
+                <img height="650" src="{{ student.upload.url }}" width="650"/>
+            {% else %}
+                <p>No file uploaded.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<br>
+<table class="table table-striped table-bordered" style="margin-left:15px;margin-right:30px;">
+    <h3 style="margin-left:15px;">Student Grades</h3>
+    <thead class="thead-dark">
+            <tr>
+                {% for grade in grades %}
+                    <th>{{ grade.subject.name }}</th>
+                {% endfor %}
+            </tr>
+    </thead>
+        <tbody>
+            <tr>
+                {% for grade in grades %}
+                    <td>{{ grade.grade }}</td>
+                {% endfor %}
+            </tr>
+        <tr>
+            <td colspan="5">Grade point average is:{{ GPA }}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+{% endblock content %}
